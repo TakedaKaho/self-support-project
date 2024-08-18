@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  meal_date: 2024-08-18 07:13:46
+  meal_type: MyString
+  food_name: MyString
+  amount: MyString
+
+two:
+  user: two
+  meal_date: 2024-08-18 07:13:46
+  meal_type: MyString
+  food_name: MyString
+  amount: MyString
