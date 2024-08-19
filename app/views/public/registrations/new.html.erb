@@ -1,25 +1,36 @@
+<style>
+  h2.text-center {
+    font-size: 5rem; 
+    color: #66CCCC; 
+  }
+
+  .btn-primary {
+    background-color: #66CCCC; /* ボタンの背景色 */
+    border-color: #66CCCC; /* ボタンのボーダー色 */
+    font-size: 1.2rem; /* ボタンのフォントサイズ */
+  }
+</style>
+
 <h2 class="text-center">Sign up</h2>
+
+<%= render "public/shared/links" %>
 
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-4">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+        <%= f.input :email, autofocus: true, input_html: { autocomplete: 'email' }, label_html: { class: 'form-label' } %>
 
-  <%= f.input :email, autofocus: true, input_html: { autocomplete: 'email' }, label_html: { class: 'form-label' } %>
+        <%= f.input :password, input_html: { autocomplete: 'new-password' }, label_html: { class: 'form-label' } %>
+        
+        <%= f.input :password_confirmation, input_html: { autocomplete: 'new-password' }, label_html: { class: 'form-label' } %>
 
-  <%= f.input :password, input_html: { autocomplete: 'new-password' }, label_html: { class: 'form-label' } %>
-  
-  <%= f.input :password_confirmation, input_html: { autocomplete: 'new-password' }, label_html: { class: 'form-label' } %>
-
-  <div class="text-center">
-    <%= f.button :submit, "Sign up", class: 'btn btn-primary' %>
+        <div class="text-center">
+          <%= f.button :submit, "Sign up", class: 'btn btn-primary btn-block' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<%= render "public/shared/links" %>
-
-</div>
-</div>
 </div>
