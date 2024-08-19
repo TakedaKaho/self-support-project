@@ -1,8 +1,18 @@
-<%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
-<% end %>
+<div class="text-center mt-4">
+  <%- if controller_name != 'sessions' %>
+    すでにアカウントがありますか？ <%= link_to "Log in", new_session_path(resource_name), class: 'custom-link' %><br />
+  <% end %>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-<% end %>
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    登録がお済みでない方は <%= link_to "Sign up", new_registration_path(resource_name), class: 'custom-link' %><br />
+  <% end %>
+</div>
+
+
+<style>
+  .custom-link {
+  color: #6c757d; /* グレー色 */
+  text-decoration: underline; /* 下線を追加 */
+ }
+</style>
 
