@@ -1,4 +1,6 @@
-<h5>admin/user/show</h5>
+<div class="container">
+    
+<h5>user/show</h5>
 <div class ="card mb-2">
  <h4>今日のタスク表示</h4>
  <%= link_to "今日のタスク作成", new_task_path %>
@@ -6,7 +8,9 @@
 </div>
 
 <div class ="card">
-  <h3>今日の目標表示</h3>
+  <h3>目標（最新1個）</h3>
+  <%= link_to "目標を設定する", new_goal_path %>
+  <%= link_to "過去の目標", goals_path %>
 </div>
 <div class="card">
  <h4>今日のBodyLog</h4>
@@ -16,6 +20,7 @@
  <%= link_to "過去の自分の記録を見る", body_logs_path %>
 </div>
 
-
-
-<h2>グラフ表示</h2>
+<div class="card">
+  <h2>グラフ表示</h2>
+</div>
+</div>

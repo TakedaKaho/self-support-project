@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       end
      end
      resources :body_logs, only:[:new, :create, :index, :edit, :update, :destroy]
+     resources :goals, only:[:new, :create, :index, :destroy]
      
   end
 end
