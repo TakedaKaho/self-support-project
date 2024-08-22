@@ -1,0 +1,2 @@
+module Public::BodyLogsHelper
+end

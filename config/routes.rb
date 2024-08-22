@@ -26,11 +26,12 @@ Rails.application.routes.draw do
       end
      end 
      
-     resources :tasks,only:[:new, :index, :show] do
+     resources :tasks, only:[:new, :create, :index, :show] do
       member do
        patch 'update_status'
       end
      end
+     resources :body_logs, only:[:new, :create, :index, :edit, :update, :destroy]
      
   end
 end
