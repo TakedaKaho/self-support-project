@@ -1,52 +1,60 @@
 <div class="container">
-<h1><%= @user.name %>のプロフィール</h1>
-    
-<h5>user/show</h5>
-<div class ="card mb-2">
- <h4>今日のタスク表示</h4>
- <%= link_to "今日のタスク作成", new_task_path %>
- <%= link_to "過去のタスク", tasks_path %>
-</div>
+  <h1><%= @user.name %>のプロフィール</h1>
 
-<div class="card mb-3">
-  <div class="card-header">
-    <h4 class="mb-0">最新の目標</h4>
+  <div class="card mb-2">
+    <div class="card-header">
+      <h4 class="mb-0">今日のタスク表示</h4>
+    </div>
+    <div class="card-body text-center">
+      <%= link_to "今日のタスク作成", new_task_path, class: "btn btn-primary me-2" %>
+      <%= link_to "過去のタスク", tasks_path, class: "btn btn-secondary" %>
+    </div>
   </div>
-  <div class="card-body">
-    <% if @new_goal %>
-      <ul class="list-unstyled">
-        <li>
-          <strong>目標体重:</strong> <%= @new_goal.target_weight %> kg
-        </li>
-        <li>
-          <strong>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %
-        </li>
-        <li>
-          <strong>目標日:</strong> <%= @new_goal.target_date %>
-        </li>
-      </ul>
-    <% else %>
-      <p>まだ目標がありません。</p>
-    <% end %>
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <h4 class="mb-0">最新の目標</h4>
+    </div>
+    <div class="card-body">
+      <% if @new_goal %>
+        <ul class="list-unstyled">
+          <li>
+            <strong>目標体重:</strong> <%= @new_goal.target_weight %> kg
+          </li>
+          <li>
+            <strong>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %
+          </li>
+          <li>
+            <strong>目標日:</strong> <%= @new_goal.target_date %>
+          </li>
+        </ul>
+      <% else %>
+        <p>まだ目標がありません。</p>
+      <% end %>
+    </div>
+    <div class="card-footer text-center">
+      <%= link_to "新しく目標を設定する", new_goal_path, class: "btn btn-primary me-2" %>
+      <%= link_to "過去の目標", goals_path, class: "btn btn-secondary" %>
+    </div>
   </div>
-  <div class="card-footer text-center">
-    <%= link_to "新しく目標を設定する", new_goal_path, class: "btn btn-primary" %>
-    <%= link_to "過去の目標", goals_path, class: "btn btn-secondary" %>
+
+  <div class="card mb-2">
+    <div class="card-header">
+      <h4 class="mb-0">今日のBodyLog</h4>
+    </div>
+    <div class="card-body text-center">
+
+      <%= link_to "今日の記録を残す", new_body_log_path, class: "btn btn-primary me-2" %>
+      <%= link_to "過去の自分の記録を見る", body_logs_path, class: "btn btn-secondary" %>
+    </div>
   </div>
-</div>
 
-
-
-
-<div class="card mb-2">
- <h4>今日のBodyLog</h4>
- if文使って今日はまだ登録ありません。
- か、登録してたら出るようにする
- <%= link_to "今日の記録を残す", new_body_log_path %>
- <%= link_to "過去の自分の記録を見る", body_logs_path %>
-</div>
-
-<div class="card">
-  <h2>グラフ表示</h2>
-</div>
+  <div class="card">
+    <div class="card-header">
+      <h2 class="mb-0">グラフ表示</h2>
+    </div>
+    <div class="card-body">
+      <!-- グラフ表示の内容をここに追加 -->
+    </div>
+  </div>
 </div>
