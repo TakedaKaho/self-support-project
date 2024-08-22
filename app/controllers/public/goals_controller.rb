@@ -1,22 +1,26 @@
 class Public::GoalsController < ApplicationController
  def new
-  @goal = Goal.new
+  @goal = Goal.new(target_weight: 50, target_body_fat: 20)
  end 
  
  def create
-  @goal = Goal.new(goal_params)
+  @goal = current_user.goals.new(goal_params)
   if @goal.save
-   redirect_to user_path(resource)
+   redirect_to user_path(current_user)
   else
    render :new
   end 
  end 
  
  def index
-  @goals = Goal.all
+  @goals = current_user.goals
  end 
  
  def destroy
+  @goal = Goal.find(params[:id])
+  @goal.destroy
+  flash[:goal_destroy_notice]="目標を正常に削除しました。"
+  redirect_to goals_path
  end 
  
  private

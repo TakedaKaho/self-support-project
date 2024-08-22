@@ -1,2 +1,25 @@
+<div class="container">
 <h2>目標を設定する</h2>
 
+<%= form_with model: @goal, local: true do |f| %>
+  <div class="field">
+    <%= f.label :target_weight, "目標体重" %>
+    <%= f.number_field :target_weight, step: 1 %>Kg
+  </div>
+
+  <div class="field">
+    <%= f.label :target_body_fat, "目標体脂肪率" %>
+    <%= f.number_field :target_body_fat, step: 1 %>%
+  </div>
+
+  <div class="field">
+    <%= f.label :target_date, "目標日" %>
+    <%= f.date_field :target_date %>までの目標
+  </div>
+
+  <div class="actions">
+    <%= f.submit "目標を設定する" %>
+  </div>
+<% end %>
+
+</div>
