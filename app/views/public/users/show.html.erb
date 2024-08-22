@@ -1,4 +1,5 @@
 <div class="container">
+<h1><%= @user.name %>のプロフィール</h1>
     
 <h5>user/show</h5>
 <div class ="card mb-2">
@@ -7,12 +8,26 @@
  <%= link_to "過去のタスク", tasks_path %>
 </div>
 
-<div class ="card">
-  <h3>目標（最新1個）</h3>
+<div class="card mb-2">
+  <h4>最新の目標</h4>
+  <% if @new_goal %>
+    <ul>
+      <li>
+        <strong>目標体重:</strong> <%= @new_goal.target_weight %> kg<br>
+        <strong>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %<br>
+        <strong>目標日:</strong> <%= @new_goal.target_date %>
+      </li>
+    </ul>
+  <% else %>
+    <p>まだ目標がありません。</p>
+  <% end %>
   <%= link_to "目標を設定する", new_goal_path %>
   <%= link_to "過去の目標", goals_path %>
 </div>
-<div class="card">
+
+
+
+<div class="card mb-2">
  <h4>今日のBodyLog</h4>
  if文使って今日はまだ登録ありません。
  か、登録してたら出るようにする

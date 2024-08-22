@@ -1,7 +1,9 @@
 class Public::UsersController < ApplicationController
     
  def show
- end 
+   @user = User.find(params[:id])
+   @new_goal = Goal.order(created_at: :desc).first
+ end
  
  def edit
  end
