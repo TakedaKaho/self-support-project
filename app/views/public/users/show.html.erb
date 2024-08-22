@@ -1,6 +1,21 @@
 <h5>admin/user/show</h5>
-<div class ="card">
-<h4>今日のタスク表示</h4>
-<%= link_to "今日のタスク作成", new_task_path %>
-<%= link_to "過去のタスク", tasks_path %>
+<div class ="card mb-2">
+ <h4>今日のタスク表示</h4>
+ <%= link_to "今日のタスク作成", new_task_path %>
+ <%= link_to "過去のタスク", tasks_path %>
 </div>
+
+<div class ="card">
+  <h3>今日の目標表示</h3>
+</div>
+<div class="card">
+ <h4>今日のBodyLog</h4>
+ if文使って今日はまだ登録ありません。
+ か、登録してたら出るようにする
+ <%= link_to "今日の記録を残す", new_body_log_path %>
+ <%= link_to "過去の自分の記録を見る", body_logs_path %>
+</div>
+
+
+
+<h2>グラフ表示</h2>
