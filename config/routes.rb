@@ -12,7 +12,7 @@ Rails.application.routes.draw do
  
  # 管理者用ユーザー管理
   namespace :admin do
-   get '/', to: 'homes#top'
+   get '/', to: 'homes#top', as: :root
     resources :users, only: [:index, :show, :edit, :update]
   end
 

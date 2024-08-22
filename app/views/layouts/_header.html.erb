@@ -1,3 +1,8 @@
 <div class="col-md-2 col-6 mt-3">
 <%= image_tag '2.png', size: '190x120' %>
 </div>
+
+<%= link_to "新規登録" , new_user_registration_path %>
+<%= link_to "ログイン", new_user_session_path %>
+<%= link_to "管理者ログイン", new_admin_session_path %>
+<%= link_to "Log Out", destroy_user_session_path, method: :delete %>
