@@ -8,22 +8,33 @@
  <%= link_to "過去のタスク", tasks_path %>
 </div>
 
-<div class="card mb-2">
-  <h4>最新の目標</h4>
-  <% if @new_goal %>
-    <ul>
-      <li>
-        <strong>目標体重:</strong> <%= @new_goal.target_weight %> kg<br>
-        <strong>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %<br>
-        <strong>目標日:</strong> <%= @new_goal.target_date %>
-      </li>
-    </ul>
-  <% else %>
-    <p>まだ目標がありません。</p>
-  <% end %>
-  <%= link_to "目標を設定する", new_goal_path %>
-  <%= link_to "過去の目標", goals_path %>
+<div class="card mb-3">
+  <div class="card-header">
+    <h4 class="mb-0">最新の目標</h4>
+  </div>
+  <div class="card-body">
+    <% if @new_goal %>
+      <ul class="list-unstyled">
+        <li>
+          <strong>目標体重:</strong> <%= @new_goal.target_weight %> kg
+        </li>
+        <li>
+          <strong>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %
+        </li>
+        <li>
+          <strong>目標日:</strong> <%= @new_goal.target_date %>
+        </li>
+      </ul>
+    <% else %>
+      <p>まだ目標がありません。</p>
+    <% end %>
+  </div>
+  <div class="card-footer text-center">
+    <%= link_to "新しく目標を設定する", new_goal_path, class: "btn btn-primary" %>
+    <%= link_to "過去の目標", goals_path, class: "btn btn-secondary" %>
+  </div>
 </div>
+
 
 
 
