@@ -1,60 +1,75 @@
 <div class="container">
-  <h1><%= @user.name %>のプロフィール</h1>
+  <div class="row">
+    <!-- サイドバー -->
+    <div class="col-md-3">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h4 class="mb-0">プロフィール</h4>
+        </div>
+        <div class="card-body">
+          <p><strong>名前:</strong> <%= @user.name %></p>
+          <p><strong>メール:</strong> <%= @user.email %></p>
+        </div>
+      </div>
 
-  <div class="card mb-2">
-    <div class="card-header">
-      <h4 class="mb-0">今日のタスク表示</h4>
+      <div class="card mb-3">
+        <div class="card-header">
+          <h4 class="mb-0">今日のタスク</h4>
+        </div>
+        <div class="card-body text-center">
+          <%= link_to "今日のタスク作成", new_task_path, class: "btn btn-primary mb-2 w-100" %>
+          <%= link_to "過去のタスク", tasks_path, class: "btn btn-secondary w-100" %>
+        </div>
+      </div>
     </div>
-    <div class="card-body text-center">
-      <%= link_to "今日のタスク作成", new_task_path, class: "btn btn-primary me-2" %>
-      <%= link_to "過去のタスク", tasks_path, class: "btn btn-secondary" %>
-    </div>
-  </div>
 
-  <div class="card mb-3">
-    <div class="card-header">
-      <h4 class="mb-0">最新の目標</h4>
-    </div>
-    <div class="card-body">
-      <% if @new_goal %>
-        <ul class="list-unstyled">
-          <li>
-            <strong>目標体重:</strong> <%= @new_goal.target_weight %> kg
-          </li>
-          <li>
-            <strong>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %
-          </li>
-          <li>
-            <strong>目標日:</strong> <%= @new_goal.target_date %>
-          </li>
-        </ul>
-      <% else %>
-        <p>まだ目標がありません。</p>
-      <% end %>
-    </div>
-    <div class="card-footer text-center">
-      <%= link_to "新しく目標を設定する", new_goal_path, class: "btn btn-primary me-2" %>
-      <%= link_to "過去の目標", goals_path, class: "btn btn-secondary" %>
-    </div>
-  </div>
+    <!-- メインコンテンツ -->
+    <div class="col-md-9">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h4 class="mb-0">最新の目標</h4>
+        </div>
+        <div class="card-body">
+          <% if @new_goal %>
+            <ul class="list-unstyled">
+              <li><strong>目標体重:</strong> <%= @new_goal.target_weight %> kg</li>
+              <li><strong>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %</li>
+              <li><strong>目標日:</strong> <%= @new_goal.target_date %></li>
+            </ul>
+          <% else %>
+            <p>まだ目標がありません。</p>
+          <% end %>
+        </div>
+        <div class="card-footer text-center">
+          <%= link_to "新しく目標を設定する", new_goal_path, class: "btn btn-primary me-2" %>
+          <%= link_to "過去の目標", goals_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
 
-  <div class="card mb-2">
-    <div class="card-header">
-      <h4 class="mb-0">今日のBodyLog</h4>
-    </div>
-    <div class="card-body text-center">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h4 class="mb-0">今日のBodyLog</h4>
+        </div>
+        <div class="card-body text-center">
+          <!-- 今日のBodyLogが登録されているかを判定 -->
+          <% if  %>
+            <!-- 登録されたBodyLogの内容を表示 -->
+          <% else %>
+            <p>今日はまだ登録ありません。</p>
+          <% end %>
+          <%= link_to "今日の記録を残す", new_body_log_path, class: "btn btn-primary me-2" %>
+          <%= link_to "過去の自分の記録を見る", body_logs_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
 
-      <%= link_to "今日の記録を残す", new_body_log_path, class: "btn btn-primary me-2" %>
-      <%= link_to "過去の自分の記録を見る", body_logs_path, class: "btn btn-secondary" %>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <h2 class="mb-0">グラフ表示</h2>
-    </div>
-    <div class="card-body">
-      <!-- グラフ表示の内容をここに追加 -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="mb-0">グラフ表示</h2>
+        </div>
+        <div class="card-body">
+          <!-- グラフ表示の内容をここに追加 -->
+        </div>
+      </div>
     </div>
   </div>
 </div>
