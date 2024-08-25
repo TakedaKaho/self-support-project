@@ -33,6 +33,16 @@
         </div>
       </div>
       
+      <div class="card mb-3">
+        <div class="card-header">
+          <h4 class="mb-0">運動記録</h4>
+        </div>
+        <div class="card-body text-center">
+          <%= link_to "今日の運動を記録する", new_exercise_log_path, class: "btn btn-primary mb-2 w-100" %>
+          <%= link_to "過去の運動",  exercise_logs_path, class: "btn btn-secondary w-100" %>
+        </div>
+      </div>
+      
     </div>
 
     <!-- メインコンテンツ -->

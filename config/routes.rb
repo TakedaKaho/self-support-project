@@ -34,6 +34,7 @@ Rails.application.routes.draw do
      resources :body_logs, only:[:new, :create, :index, :edit, :update, :destroy]
      resources :goals, only:[:new, :create, :index, :destroy]
      resources :meal_logs, only:[:new, :create, :index, :edit, :update, :destroy]
+     resources :exercise_logs, only:[:new, :create, :index, :edit, :update, :destroy]
      
   end
 end
