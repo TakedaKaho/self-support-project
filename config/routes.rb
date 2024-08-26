@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
    get '/', to: 'homes#top', as: :root
     resources :users, only: [:index, :show, :edit, :update]
+    resources :tweets, only:[:index, :destroy]
   end
 
   # 顧客用ユーザー管理
@@ -35,6 +36,6 @@ Rails.application.routes.draw do
      resources :goals, only:[:new, :create, :index, :destroy]
      resources :meal_logs, only:[:new, :create, :index, :edit, :update, :destroy]
      resources :exercise_logs, only:[:new, :create, :index, :edit, :update, :destroy]
-     
+     resources :tweets, only:[:new, :create, :index, :destroy]
   end
 end
