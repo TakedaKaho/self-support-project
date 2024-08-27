@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       end
      end 
      
-     resources :tasks, only:[:new, :create, :index, ] do
+     resources :tasks, only:[:new, :create, :index, :destroy] do
       member do
        patch 'update_status'
       end

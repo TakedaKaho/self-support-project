@@ -1,6 +1,6 @@
 <style>
-  h2.text-center {
-    font-size: 3rem; 
+  h3.text-center {
+    font-size: 2rem; 
     color: #75A9FF; 
   }
 
@@ -8,37 +8,39 @@
     background-color: #75A9FF; /* ボタンの背景色 */
     border-color: #75A9FF; /* ボタンのボーダー色 */
   }
-
-  }
 </style>
 
-
 <div class="container">
-  <h2 class="text-center mb-4">過去のタスクを見直そう</h2>
-  
+
   <div class="card mb-3">
     <div class="card-header">
-      <h4 class="mb-0">タスク一覧</h4>
+      <h3 class="text-center">過去のタスク一覧</h3>
     </div>
     <div class="card-body">
-      <% if @tasks.any? %>
-        <ul class="list-group">
-          <% @tasks.each do |task| %>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <%= task.detail %>
-                <% if task.completed %>
-                  <span class="badge bg-success">達成</span>
-                <% else %>
-                  <span class="badge bg-secondary">未達成</span>
-                <% end %>
-              </div>
-              <div>
-                <%= link_to '変更', update_status_task_path(task), method: :patch, class: "btn btn-sm btn-outline-primary" %>
-              </div>
-            </li>
-          <% end %>
-        </ul>
+      <% if @tasks_by_date.any? %>
+        <% @tasks_by_date.each do |date, tasks| %>
+          <h5 class="mt-4"><%= date.strftime("%Y年 %m月 %d日") %></h5>
+          <ul class="list-group">
+            <% tasks.each do |task| %>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <%= task.detail %>
+                  <% if task.completed %>
+                    <span class="badge bg-success">達成</span>
+                  <% else %>
+                    <span class="badge bg-secondary">未達成</span>
+                  <% end %>
+                </div>
+                <div>
+                  <%= link_to '変更', update_status_task_path(task), method: :patch, class: "btn btn-sm btn-outline-primary" %>
+                  <%= link_to task_path(task), method: :delete, class: "btn btn-sm btn-outline-dark", data: { confirm: '本当に削除しますか？' } do %>
+                    <i class="fa-solid fa-trash-can"></i>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
       <% else %>
         <p>タスクはありません。</p>
       <% end %>
@@ -48,3 +50,4 @@
     </div>
   </div>
 </div>
+

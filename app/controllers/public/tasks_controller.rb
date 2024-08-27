@@ -19,15 +19,16 @@ class Public::TasksController < ApplicationController
 
   # タスクの一覧を表示
   def index
-    @tasks = current_user.tasks.order(created_at: :desc)
+    @tasks_by_date = current_user.tasks.order(:created_at).group_by { |task| task.created_at.to_date }
   end 
   
 
   # タスクの状態を更新
   def update_status
+    @task = Task.find(params[:id])
     @task.update(completed: !@task.completed)
-    redirect_to tasks_path, notice: "タスクの状態が更新されました。"
-  end 
+    redirect_to tasks_path
+  end
 
   # タスクを削除
   def destroy
