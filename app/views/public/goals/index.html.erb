@@ -1,3 +1,16 @@
+<style>
+  h2.text-center {
+    font-size: 3rem; 
+    color: #75A9FF; 
+  }
+
+  .btn-primary {
+    background-color: #75A9FF; /* ボタンの背景色 */
+    border-color: #75A9FF; /* ボタンのボーダー色 */
+  }
+</style>
+
+
 <% if flash[:goal_destroy_notice].present? %>
   <div class="ml-4 alert alert-danger">
     <%= flash[:goal_destroy_notice] %>
@@ -12,17 +25,21 @@
         <div class="col-md-4 mb-4">
           <div class="card h-100">
             <div class="card-body">
-              <h4 class="card-title"><strong><%= goal.target_date %>までの目標</strong></h4>
+              <h5 class="card-title"><strong><%= goal.target_date.strftime('%Y年%m月%d日') %>までの目標</strong></h5>
               <h6 class="card-text">
                 <strong>目標体重:</strong> <%= goal.target_weight %> kg<br>
+              </h6>
+              <h6 class="card-text">
                 <strong>目標体脂肪率:</strong> <%= goal.target_body_fat %> %<br>
               </h6>
-              <div class="text-right">
-              <p class="text-muted">設定日:<%= goal.created_at.strftime("%Y-%m-%d") %><br></p>
+              <div class="text-right text-muted">
+              設定日:<%= goal.created_at.strftime("%Y-%m-%d") %>
               </div>
             </div>
             <div class="card-footer text-center">
-              <%= link_to '削除', goal_path(goal), method: :delete, class: 'btn btn-outline-danger', data: { confirm: '本当に削除しますか？' } %>
+              <%= link_to goal_path(goal), method: :delete, class: 'btn btn-sm btn-outline-dark', data: { confirm: '本当に削除しますか？' } do  %>
+              削除 <i class="fa-solid fa-trash-can" style="color: #ff4747;"></i>
+              <% end %>
             </div>
           </div>
         </div>

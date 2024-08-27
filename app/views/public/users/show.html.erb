@@ -19,7 +19,9 @@
           <p><strong>名前:</strong> <%= @user.name %></p>
           <p><strong>メール:</strong> <%= @user.email %></p>
           <p><strong>紹介文:</strong> <%= @user.body.gsub(/\n/, '<br>').html_safe %></p>
-          <%= link_to "編集",  edit_user_path(current_user), class: "btn btn-outline-dark mb-2 w-100" %>
+          <%= link_to edit_user_path(current_user), class: "btn btn-outline-dark mb-2 w-100" do %>
+          編集 <i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
         </div>
       </div>
 
@@ -59,7 +61,7 @@
     <div class="col-md-9">
       <div class="card mb-3">
         <div class="card-header">
-          <h4 class="mb-0"><i class="fa-solid fa-medal" style="color: #f41a1a;"></i><%= @new_goal.target_date %>までの目標</h4>
+          <h4 class="mb-0"><i class="fa-solid fa-medal" style="color: #f41a1a;"></i> <%= @new_goal.target_date.strftime('%Y年 %m月 %d日') %>までの目標</h4>
         </div>
         <div class="card-body">
           <% if @new_goal %>
@@ -95,7 +97,7 @@
 
       <div class="card">
         <div class="card-header">
-          <h2 class="mb-0">グラフ表示</h2>
+          <h2 class="mb-0">グラフ表示 <i class="fa-solid fa-arrow-trend-up" style="color: #63E6BE;"></i></h2>
         </div>
         <div class="card-body">
           <!-- グラフ表示の内容をここに追加 -->
