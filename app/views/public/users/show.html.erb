@@ -59,14 +59,13 @@
     <div class="col-md-9">
       <div class="card mb-3">
         <div class="card-header">
-          <h4 class="mb-0">最新の目標</h4>
+          <h4 class="mb-0"><i class="fa-solid fa-medal" style="color: #f41a1a;"></i><%= @new_goal.target_date %>までの目標</h4>
         </div>
         <div class="card-body">
           <% if @new_goal %>
             <ul class="list-unstyled">
               <li><strong>目標体重:</strong> <%= @new_goal.target_weight %> kg</li>
               <li><strong>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %</li>
-              <li><strong>目標日:</strong> <%= @new_goal.target_date %></li>
             </ul>
           <% else %>
             <p>まだ目標がありません。</p>

@@ -19,7 +19,7 @@ class Public::GoalsController < ApplicationController
  def destroy
   @goal = Goal.find(params[:id])
   @goal.destroy
-  flash[:goal_destroy_notice]="目標を正常に削除しました。"
+  flash[:goal_destroy_notice]="目標を削除しました。"
   redirect_to goals_path
  end 
  
