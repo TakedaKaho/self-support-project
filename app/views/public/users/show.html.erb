@@ -82,9 +82,9 @@
             <div>
               <%= task.detail %>
               <% if task.completed %>
-                <span class="badge bg-success">達成</span>
+               <span class="btn btn-sm btn-outline-dark"> 達成 <i class="fa-regular fa-face-smile"></i> <i class="fa-regular fa-thumbs-up" style="color: #63E6BE;"></i></span>
               <% else %>
-                <span class="badge bg-secondary">未達成</span>
+              　<span class="btn btn-sm btn-outline-dark"> 未達成 <i class="fa-regular fa-face-surprise"></i> <i class="fa-solid fa-fire" style="color: #fb5656;"></i> </span>
               <% end %>
             </div>
             <div>
