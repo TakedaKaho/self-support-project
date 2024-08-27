@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
  def show
    @user = User.find(params[:id])
    @new_goal = Goal.order(created_at: :desc).first
+   @today_tasks = current_user.tasks.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
  end
  
  def edit

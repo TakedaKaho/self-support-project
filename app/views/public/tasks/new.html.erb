@@ -1,3 +1,36 @@
+<style>
+  h2.text-center {
+    font-size: 3rem; 
+    color: #75A9FF; 
+  }
+
+  .btn-primary {
+    background-color: #75A9FF; /* ボタンの背景色 */
+    border-color: #75A9FF; /* ボタンのボーダー色 */
+  }
+
+  }
+</style>
+
 <div class="container">
-  <h2>今日のタスクを設定する</h2>
+  <h2 class="text-center mb-4">タスクを設定する</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <%= form_with model: @task, local: true do |f| %>
+            <div class="mb-3">
+              <%= f.label :detail, "タスク詳細", class: "form-label" %>
+              <%= f.text_area :detail, class: "form-control", rows: 2, placeholder: "タスクの詳細を入力してください" %>
+            </div>
+
+            <div class="text-center">
+              <%= f.submit "タスクを設定する", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
