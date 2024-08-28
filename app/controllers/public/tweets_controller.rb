@@ -16,7 +16,7 @@ class Public::TweetsController < ApplicationController
  private
  
  def tweet_params
-    params.require(:tweet).permit(:, :completed)
-  end 
+  params.require(:tweet).permit(:tweet)
+ end 
  
 end
