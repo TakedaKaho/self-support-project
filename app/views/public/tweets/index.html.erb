@@ -1,31 +1,48 @@
 <div class="container">
- <div class="row">
-  
-  <div class="col-md-3">
-   <div class ="card">
-    <h5 class="card-title text-center mt-4">今日の頑張りを呟こう<i class="fa-regular fa-face-smile-wink"></i><i class="fa-solid fa-fire" style="color: #ff2e2e;"></i></h5>
-    <div class="card-body">
-     <%= form_with model: @tweet, local: true do |f| %>
-      <%= f.text_area :tweet, class:"form-control" %>
-      <%= f.submit '保存', class:"btn btn-outline-info text-center mt-3" %>
-     <% end %>
-     
+  <div class="row">
+    
+    <div class="col-md-4">
+      <div class="card">
+        <h5 class="card-title text-center mt-4">
+          今日の頑張りを呟こう 
+          <i class="fa-regular fa-face-smile-wink"></i>
+          <i class="fa-solid fa-fire" style="color: #ff2e2e;"></i>
+        </h5>
+        <div class="card-body">
+          <%= form_with model: @tweet, local: true do |f| %>
+            <%= f.text_area :tweet, class:"form-control", rows: 5 %>
+            <div class="text-center mt-3">
+              <%= f.submit '保存', class:"btn btn-outline-info" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-   </div>
+    
+    <div class="col-md-8">
+      <h3 class="mb-4">みんなの頑張りを応援しよう！</h3>
+      
+      <% if @tweets.present? %>
+        <% @tweets.each do |tweet| %>
+          <div class="card mb-3">
+            <div class="card-body d-flex">
+              <div class="me-3">
+                <!-- ここにユーザーのアイコンを表示 -->
+                
+              </div>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <strong><%= tweet.user.name %></strong>
+                  <small class="text-muted"><%= tweet.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+                </div>
+                <p class="mt-2 mb-0"><%= tweet.tweet.gsub(/\n/, '<br>').html_safe %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>呟きはありません。</p>
+      <% end %>
+    </div>
   </div>
-  
-  <div class="col-md-8">
-  <h3>みんなの頑張りを応援しよう！</h3>
-  <% if @tweets.present? %>
-    <% @tweets.each do |tweet| %>
-      <p><%= tweet.tweet %></p>
-    <% end %>
-  <% else %>
-    <p>呟きはありません。</p>
-  <% end %>
-</div>
-
-  
-  
- </div>
 </div>
