@@ -6,7 +6,7 @@
     <h5 class="card-title text-center mt-4">今日の頑張りを呟こう<i class="fa-regular fa-face-smile-wink"></i><i class="fa-solid fa-fire" style="color: #ff2e2e;"></i></h5>
     <div class="card-body">
      <%= form_with model: @tweet, local: true do |f| %>
-      <%= f.text_area :tewwt, class:"form-control" %>
+      <%= f.text_area :tweet, class:"form-control" %>
       <%= f.submit '保存', class:"btn btn-outline-info text-center mt-3" %>
      <% end %>
      
@@ -15,7 +15,17 @@
   </div>
   
   <div class="col-md-8">
-   <h3>みんなの頑張りを応援しよう！</h3>
-  </div>
+  <h3>みんなの頑張りを応援しよう！</h3>
+  <% if @tweets.present? %>
+    <% @tweets.each do |tweet| %>
+      <p><%= tweet.tweet %></p>
+    <% end %>
+  <% else %>
+    <p>呟きはありません。</p>
+  <% end %>
+</div>
+
+  
+  
  </div>
 </div>

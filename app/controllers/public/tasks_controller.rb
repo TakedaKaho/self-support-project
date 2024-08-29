@@ -45,7 +45,7 @@ class Public::TasksController < ApplicationController
 
   # タスクのパラメータを許可
   def task_params
-    params.require(:task).permit(:tweet)
+    params.require(:task).permit(:detail)
   end 
 end
 
