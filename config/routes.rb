@@ -36,6 +36,6 @@ Rails.application.routes.draw do
      resources :goals, only:[:new, :create, :index, :destroy]
      resources :meal_logs, only:[:new, :create, :index, :edit, :update, :destroy]
      resources :exercise_logs, only:[:new, :create, :index, :edit, :update, :destroy]
-     resources :tweets, only:[:new, :create, :index, :destroy]
+     resources :tweets, only:[:create, :index, :destroy]
   end
 end

@@ -1,14 +1,14 @@
 class Public::TweetsController < ApplicationController
- def new
+
+ 
+ def index
   @tweet = Tweet.new
+  @tweets= Tweet.all
  end 
  
  def create
   @tweet= current_user.tweet.save(tweet_params)
- end 
- 
- def index
- end 
+ end
  
  def destroy
  end 
