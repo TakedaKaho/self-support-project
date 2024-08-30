@@ -16,7 +16,11 @@ class Public::TweetsController < ApplicationController
   end 
  end
  
- def destroy
+ def tweet
+  @tweet= Tweet.find(params[:id])
+  @tweet.destroy
+  flash[:notice]="呟きを削除しました"
+  redirect_to tweets_path
  end 
  
  private
