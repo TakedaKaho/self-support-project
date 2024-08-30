@@ -16,7 +16,7 @@ class Public::TweetsController < ApplicationController
   end 
  end
  
- def tweet
+ def destroy
   @tweet= Tweet.find(params[:id])
   @tweet.destroy
   flash[:notice]="呟きを削除しました"
