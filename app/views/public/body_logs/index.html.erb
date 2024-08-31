@@ -6,9 +6,21 @@
 </style>
 
 <div class="container">
+    
+<% if flash[:body_log_notice].present? %>
+  <div class="ml-4 alert alert-success">
+    <%= flash[:body_log_notice] %>
+  </div>
+<% end %>
+<% if flash[:body_log_destroy_notice].present? %>
+  <div class="ml-4 alert alert-danger">
+    <%= flash[:body_log_destroy_notice] %>
+  </div>
+<% end %>
+
  <div class="row justify-content-center">
   <div class="col-md-10">
-    <h2 class="text-center mb-4">BodyLog一覧</h2>
+    <h2 class="text-center mb-4">BodyLogs</h2>
     　<% if @body_logs.any? %>
     <div class="row">
       <% @body_logs.each do |body_log| %>
@@ -23,7 +35,7 @@
                 <strong>体脂肪率:</strong> <%= body_log.body_fat %> %<br>
               </h6>
               <div class="text-right text-muted">
-              記録日:<%= body_log.created_at.strftime("%Y-%m-%d") %>
+              記録日:<%= body_log.recorded_at.strftime("%Y-%m-%d") %>
               </div>
             </div>
             <div class="card-footer text-center">
