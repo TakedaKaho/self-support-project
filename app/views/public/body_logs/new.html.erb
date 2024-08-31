@@ -1,1 +1,42 @@
-body_log/new
+<style>
+  h2.text-center {
+    font-size: 3rem; 
+    color: #75A9FF; 
+  }
+  .btn-primary {
+    background-color: #75A9FF; /* ボタンの背景色 */
+    border-color: #75A9FF; /* ボタンのボーダー色 */
+  }
+</style>
+
+<div class="container">
+ <div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="text-center mb-4">今日のBodyLogを記録する</h2>
+    <div class="card">
+     <div class="card-body">
+      <%= form_with model: @body_log, local: true do |f| %>
+       <%= f.label :weight, "体重", class: "form-label" %>
+        <div class="input-group">
+         <%= f.number_field :weight, step: 1, class: "form-control" %>
+         <span class="input-group-text">Kg</span>
+        </div>
+        <%= f.label :body_fat, "体脂肪率", class: "form-label" %>
+        <div class="input-group">
+         <%= f.number_field :body_fat, step: 1, class: "form-control" %>
+         <span class="input-group-text">%</span>
+        </div>
+        <%= f.label :recorded_at, "記録日", class: "form-label" %>
+        <div class="input-group">
+         <%= f.date_field :recorded_at, class: "form-control" %>
+        </div>
+        <div class="text-center">
+         <%= f.submit "BodyLogを記録", class: "btn btn-primary mt-4" %>
+        </div>
+      <% end %>
+
+     </div>
+    </div>
+  </div>
+ </div>
+</div>

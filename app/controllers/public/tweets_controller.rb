@@ -20,7 +20,7 @@ class Public::TweetsController < ApplicationController
   @tweet = Tweet.find(params[:id])
   
   if @tweet.destroy
-    flash[:notice] = "呟きを削除しました"
+    flash[:tweet_notice] = "呟きを削除しました"
   else
     flash[:alert] = "呟きを削除できませんでした"
   end

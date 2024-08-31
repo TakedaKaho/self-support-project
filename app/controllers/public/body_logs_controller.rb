@@ -1,11 +1,11 @@
 class Public::BodyLogsController < ApplicationController
     
  def new
-  @body_log = BodyLog.new
+  @body_log = BodyLog.new(weight: 50, body_fat: 20)
  end 
  
  def create
-  @body_log = current_user.body_log.new(body_log_params)
+  @body_log = current_user.body_logs.new(body_log_params)
   if @body_log.save
    flash[:notice]="今日のBodyLogを記録しました"
    redirect_to body_logs_path
@@ -15,6 +15,7 @@ class Public::BodyLogsController < ApplicationController
  end 
  
  def index
+  @body_logs =current_user.body_logs.all
  end 
  
  def edit
