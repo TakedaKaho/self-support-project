@@ -6,18 +6,15 @@
 </style>
 
 <div class="container">
-  
- <% if flash[:user_notice].present? %>
-  <div class="alert alert-success">
-    <%= flash[:user_notice] %>
-  </div>
- <% end %>
-  
-  
+  <% if flash[:user_notice].present? %>
+    <div class="alert alert-success">
+      <%= flash[:user_notice] %>
+    </div>
+  <% end %>
+
   <div class="row">
     <!-- サイドバー -->
     <div class="col-md-3">
-      
       <div class="card mb-3">
         <div class="card-header">
           <h4 class="mb-0 text-center">プロフィール <i class="fa-solid fa-user"></i></h4>
@@ -27,13 +24,12 @@
           <p><strong>メール:</strong> <%= @user.email %></p>
           <p><strong>紹介文:</strong> <%= @user.body.gsub(/\n/, '<br>').html_safe %></p>
           <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary mb-2 w-100" do %>
-          編集 <i class="fa-solid fa-user-gear"></i>
+            編集 <i class="fa-solid fa-user-gear"></i>
           <% end %>
         </div>
       </div>
 
-      
-       <div class="card mb-3">
+      <div class="card mb-3">
         <div class="card-header">
           <h4 class="mb-0 text-center"><i class="fa-solid fa-utensils"></i> 食事記録 <i class="fa-solid fa-bowl-food"></i></h4>
         </div>
@@ -42,21 +38,53 @@
           <%= link_to "過去の食事", meal_logs_path, class: "btn btn-outline-secondary w-100" %>
         </div>
       </div>
-      
+
       <div class="card mb-3">
         <div class="card-header">
           <h4 class="mb-0 text-center"><i class="fa-solid fa-dumbbell"></i> 運動記録 <i class="fa-solid fa-person-running"></i></h4>
         </div>
         <div class="card-body text-center">
           <%= link_to "今日の運動を記録する", new_exercise_log_path, class: "btn btn-outline-secondary mb-2 w-100" %>
-          <%= link_to "過去の運動",  exercise_logs_path, class: "btn btn-outline-secondary w-100" %>
+          <%= link_to "過去の運動", exercise_logs_path, class: "btn btn-outline-secondary w-100" %>
         </div>
       </div>
-      
     </div>
 
     <!-- メインコンテンツ -->
     <div class="col-md-9">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h4 class="mb-0">今日のタスク</h4>
+        </div>
+        <div class="card-body">
+          <% if @today_tasks.any? %>
+            <ul class="list-group">
+              <% @today_tasks.each do |task| %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <%= task.detail %>
+                    <% if task.completed %>
+                      <span class="btn btn-sm btn-outline-dark"> 達成 <i class="fa-regular fa-face-smile"></i> <i class="fa-regular fa-thumbs-up" style="color: #63E6BE;"></i></span>
+                    <% else %>
+                      <span class="btn btn-sm btn-outline-dark"> 未達成 <i class="fa-regular fa-face-surprise"></i> <i class="fa-solid fa-fire" style="color: #fb5656;"></i> </span>
+                    <% end %>
+                  </div>
+                  <div>
+                    <%= link_to '変更', update_status_task_path(task), method: :patch, class: "btn btn-sm btn-outline-primary" %>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>今日のタスクはありません。</p>
+          <% end %>
+        </div>
+        <div class="card-footer text-center">
+          <%= link_to "タスク作成", new_task_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "過去のタスク", tasks_path, class: "btn btn-outline-secondary" %>
+        </div>
+      </div>
+
       <div class="card mb-3">
         <div class="card-header">
           <h4 class="mb-0"><%= @new_goal.target_date.strftime('%Y年 %m月 %d日') %>までの目標</h4>
@@ -76,40 +104,6 @@
           <%= link_to "過去の目標", goals_path, class: "btn btn-outline-secondary" %>
         </div>
       </div>
-      
-       <div class="card mb-3">
-  <div class="card-header">
-    <h4 class="mb-0">今日のタスク</h4>
-  </div>
-  <div class="card-body">
-    <% if @today_tasks.any? %>
-      <ul class="list-group">
-        <% @today_tasks.each do |task| %>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div>
-              <%= task.detail %>
-              <% if task.completed %>
-               <span class="btn btn-sm btn-outline-dark"> 達成 <i class="fa-regular fa-face-smile"></i> <i class="fa-regular fa-thumbs-up" style="color: #63E6BE;"></i></span>
-              <% else %>
-              　<span class="btn btn-sm btn-outline-dark"> 未達成 <i class="fa-regular fa-face-surprise"></i> <i class="fa-solid fa-fire" style="color: #fb5656;"></i> </span>
-              <% end %>
-            </div>
-            <div>
-              <%= link_to '変更', update_status_task_path(task), method: :patch, class: "btn btn-sm btn-outline-primary" %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>今日のタスクはありません。</p>
-    <% end %>
-  </div>
-  <div class="card-footer text-center">
-    <%= link_to "タスク作成", new_task_path, class: "btn btn-outline-secondary" %>
-    <%= link_to "過去のタスク", tasks_path, class: "btn btn-outline-secondary" %>
-  </div>
-</div>
-
 
       <div class="card mb-3">
         <div class="card-header">
@@ -138,3 +132,4 @@
     </div>
   </div>
 </div>
+
