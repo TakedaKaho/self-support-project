@@ -89,12 +89,12 @@
         <div class="card-header">
           <h4 class="mb-0"><%= @new_goal.target_date.strftime('%Y年 %m月 %d日') %>までの目標</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body text-center">
           <% if @new_goal %>
-            <ul class="list-unstyled">
-              <li><strong>目標体重:</strong> <%= @new_goal.target_weight %> kg</li>
-              <li><strong>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %</li>
-            </ul>
+            <div class="body-log-entry">
+              <p>目標体重:<%= @new_goal.target_weight %> kg</p>
+              <p>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %</p>
+            </div>
           <% else %>
             <p>まだ目標がありません。</p>
           <% end %>
@@ -110,12 +110,19 @@
           <h4 class="mb-0">今日の Body Log</h4>
         </div>
         <div class="card-body text-center">
-          <!-- 今日のBodyLogが登録されているかを判定 -->
-          <% if  %>
-            <!-- 登録されたBodyLogの内容を表示 -->
+          <% if @today_body_logs.any? %>
+           <% @today_body_logs.each do |body_log| %>
+            <div class="body-log-entry">
+              <p>記録日: <%= body_log.recorded_at.strftime("%Y-%m-%d %H:%M") %></p>
+              <p>体重: <%= body_log.weight %> kg</p>
+              <p>体脂肪率: <%= body_log.body_fat%> %</p>
+            </div>
+           <% end %>
           <% else %>
-            <p>今日はまだ登録ありません。</p>
+            <p>今日の記録はまだありません。</p>
           <% end %>
+          </div>
+          <div class="card-footer text-center">
           <%= link_to "今日の記録を残す", new_body_log_path, class: "btn btn-outline-secondary me-2" %>
           <%= link_to "過去の自分の記録を見る", body_logs_path, class: "btn btn-outline-secondary" %>
         </div>
