@@ -15,7 +15,7 @@ class Public::BodyLogsController < ApplicationController
  end 
  
  def index
-  @body_logs =current_user.body_logs.all
+  @body_logs =current_user.body_logs
  end 
  
  def edit

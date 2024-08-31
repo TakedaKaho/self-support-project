@@ -1,1 +1,43 @@
-body_log/index
+<style>
+  h2.text-center {
+    font-size: 3rem; 
+    color: #75A9FF; 
+  }
+</style>
+
+<div class="container">
+ <div class="row justify-content-center">
+  <div class="col-md-10">
+    <h2 class="text-center mb-4">BodyLog一覧</h2>
+    　<% if @body_logs.any? %>
+    <div class="row">
+      <% @body_logs.each do |body_log| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+
+              <h6 class="card-text">
+                <strong>体重:</strong> <%= body_log.weight %> kg<br>
+              </h6>
+              <h6 class="card-text">
+                <strong>体脂肪率:</strong> <%= body_log.body_fat %> %<br>
+              </h6>
+              <div class="text-right text-muted">
+              記録日:<%= body_log.created_at.strftime("%Y-%m-%d") %>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <%= link_to body_log_path(body_log), method: :delete, class: 'btn btn-sm btn-outline-dark', data: { confirm: '本当に削除しますか？' } do  %>
+              <i class="fa-solid fa-trash-can"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center">Body Logが設定されていません。</p>
+  <% end %>
+  </div>
+ </div>
+</div>
