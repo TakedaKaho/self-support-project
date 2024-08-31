@@ -23,7 +23,7 @@
           <p><strong>名前:</strong> <%= @user.name %></p>
           <p><strong>メール:</strong> <%= @user.email %></p>
           <p><strong>紹介文:</strong> <%= @user.body.gsub(/\n/, '<br>').html_safe %></p>
-          <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary mb-2 w-100" do %>
+          <%= link_to edit_user_path(current_user), class: "btn btn-outline-dark mb-2 w-100" do %>
             編集 <i class="fa-solid fa-user-gear"></i>
           <% end %>
         </div>
@@ -34,8 +34,8 @@
           <h4 class="mb-0 text-center"><i class="fa-solid fa-utensils"></i> 食事記録 <i class="fa-solid fa-bowl-food"></i></h4>
         </div>
         <div class="card-body text-center">
-          <%= link_to "今日の食事を記録する", new_meal_log_path, class: "btn btn-outline-secondary mb-2 w-100" %>
-          <%= link_to "過去の食事", meal_logs_path, class: "btn btn-outline-secondary w-100" %>
+          <%= link_to "今日の食事を記録する", new_meal_log_path, class: "btn btn-outline-dark mb-2 w-100" %>
+          <%= link_to "過去の食事", meal_logs_path, class: "btn btn-outline-dark w-100" %>
         </div>
       </div>
 
@@ -44,8 +44,8 @@
           <h4 class="mb-0 text-center"><i class="fa-solid fa-dumbbell"></i> 運動記録 <i class="fa-solid fa-person-running"></i></h4>
         </div>
         <div class="card-body text-center">
-          <%= link_to "今日の運動を記録する", new_exercise_log_path, class: "btn btn-outline-secondary mb-2 w-100" %>
-          <%= link_to "過去の運動", exercise_logs_path, class: "btn btn-outline-secondary w-100" %>
+          <%= link_to "今日の運動を記録する", new_exercise_log_path, class: "btn btn-outline-dark mb-2 w-100" %>
+          <%= link_to "過去の運動", exercise_logs_path, class: "btn btn-outline-dark w-100" %>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
     <div class="col-md-9">
       <div class="card mb-3">
         <div class="card-header">
-          <h4 class="mb-0">今日のタスク</h4>
+          <h4 class="text-center mb-0">今日のタスク</h4>
         </div>
         <div class="card-body">
           <% if @today_tasks.any? %>
@@ -80,14 +80,14 @@
           <% end %>
         </div>
         <div class="card-footer text-center">
-          <%= link_to "タスク作成", new_task_path, class: "btn btn-outline-secondary" %>
-          <%= link_to "過去のタスク", tasks_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "タスク作成", new_task_path, class: "btn btn-outline-dark" %>
+          <%= link_to "過去のタスク", tasks_path, class: "btn btn-outline-dark" %>
         </div>
       </div>
 
       <div class="card mb-3">
         <div class="card-header">
-          <h4 class="mb-0"><%= @new_goal.target_date.strftime('%Y年 %m月 %d日') %>までの目標</h4>
+          <h4 class="text-center mb-0"><%= @new_goal.target_date.strftime('%Y年 %m月 %d日') %>までの目標</h4>
         </div>
         <div class="card-body text-center">
           <% if @new_goal %>
@@ -100,20 +100,20 @@
           <% end %>
         </div>
         <div class="card-footer text-center">
-          <%= link_to "目標を設定する", new_goal_path, class: "btn btn-outline-secondary me-2" %>
-          <%= link_to "過去の目標", goals_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "目標を設定する", new_goal_path, class: "btn btn-outline-dark me-2" %>
+          <%= link_to "過去の目標", goals_path, class: "btn btn-outline-dark" %>
         </div>
       </div>
 
       <div class="card mb-3">
         <div class="card-header">
-          <h4 class="mb-0">今日の Body Log</h4>
+          <h4 class="text-center mb-0">今日の Body Log</h4>
         </div>
         <div class="card-body text-center">
           <% if @today_body_logs.any? %>
            <% @today_body_logs.each do |body_log| %>
             <div class="body-log-entry">
-              <p>記録日: <%= body_log.recorded_at.strftime("%Y-%m-%d %H:%M") %></p>
+              <p>記録日: <%= body_log.recorded_at.strftime("%Y-%m-%d") %></p>
               <p>体重: <%= body_log.weight %> kg</p>
               <p>体脂肪率: <%= body_log.body_fat%> %</p>
             </div>
@@ -123,14 +123,14 @@
           <% end %>
           </div>
           <div class="card-footer text-center">
-          <%= link_to "今日の記録を残す", new_body_log_path, class: "btn btn-outline-secondary me-2" %>
-          <%= link_to "過去の自分の記録を見る", body_logs_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "今日の記録を残す", new_body_log_path, class: "btn btn-outline-dark me-2" %>
+          <%= link_to "過去の自分の記録を見る", body_logs_path, class: "btn btn-outline-dark" %>
         </div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h2 class="mb-0">グラフ表示 <i class="fa-solid fa-arrow-trend-up" style="color: #63E6BE;"></i></h2>
+          <h2 class="text-center mb-0">グラフ表示 <i class="fa-solid fa-arrow-trend-up" style="color: #63E6BE;"></i></h2>
         </div>
         <div class="card-body">
           <!-- グラフ表示の内容をここに追加 -->
