@@ -7,7 +7,7 @@ class Public::BodyLogsController < ApplicationController
  def create
   @body_log = current_user.body_logs.new(body_log_params)
   if @body_log.save
-   flash[:body_log_notice]="今日のBodyLogを記録しました"
+   flash[:body_log_notice]="BodyLogを記録しました"
    redirect_to body_logs_path
   else
    render :new
@@ -19,15 +19,23 @@ class Public::BodyLogsController < ApplicationController
  end 
  
  def edit
+  @body_log = BodyLog.find(params[:id])
  end 
  
  def update
+  @body_log = BodyLog.find(params[:id])
+  if @body_log.update(body_log_params)
+   redirect_to body_logs_path
+   flash[:body_log_edit_notice]="BodyLogを変更しました"
+  else
+   render :edit
+  end
  end 
  
  def destroy
   @body_log = BodyLog.find(params[:id])
   @body_log.destroy
-  flash[:body_log_destroy_notice]="記録を削除しました。"
+  flash[:body_log_destroy_notice]="BodyLogをを削除しました。"
   redirect_to body_logs_path
  end 
  
