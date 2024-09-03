@@ -6,7 +6,7 @@ class Public::MealLogsController < ApplicationController
  def create
   @meal_log = current_user.meal_logs.new(meal_log_params)
   if @meal_log.save
-   flash[:meal_log_notice]="BodyLogを記録しました"
+   flash[:meal_log_notice]="食事を記録しました"
    redirect_to meal_logs_path
   else
    render :new

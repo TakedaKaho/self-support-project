@@ -1,1 +1,9 @@
-index/meal_log
+<div class="container">
+    
+<% if flash[:meal_log_notice].present? %>
+  <div class="ml-4 alert alert-success">
+    <%= flash[:meal_log_notice] %>
+  </div>
+<% end %>
+
+</div>
