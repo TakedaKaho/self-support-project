@@ -22,7 +22,7 @@
         </div>
         <%= f.label :meal_type, "食事タイプ", class: "form-label" %>
         <div class="input-group">
-         <%= f.number_field :meal_type, class: "form-control" %>
+         <%= f.select :meal_type, MealLog.meal_types.keys, {}, class: "form-control" %>
         </div>
         <%= f.label :food_name, "食べたもの", class: "form-label" %>
         <div class="input-group">
