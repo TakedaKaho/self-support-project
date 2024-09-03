@@ -4,7 +4,13 @@ class Public::MealLogsController < ApplicationController
  end 
  
  def create
-  @meal_log=current_user.meal_logs.new(meal_log_params)
+  @meal_log = current_user.meal_logs.new(meal_log_params)
+  if @meal_log.save
+   flash[:meal_log_notice]="BodyLogを記録しました"
+   redirect_to meal_logs_path
+  else
+   render :new
+  end 
  end 
  
  def index
@@ -21,8 +27,8 @@ class Public::MealLogsController < ApplicationController
  
  private
  
- def body_log_params
-  params.require(:meal_log).permit(:meal_date, :meal_type, :food_name)
+ def meal_log_params
+  params.require(:meal_log).permit(:meal_date, :meal_type, :food_name, :amount)
  end
  
 end
