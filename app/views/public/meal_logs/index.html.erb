@@ -1,3 +1,10 @@
+<style>
+  h2.text-center {
+    font-size: 3rem; 
+    color: #75A9FF; 
+  }
+</style>
+
 <div class="container">
     
 <% if flash[:meal_log_notice].present? %>
@@ -5,5 +12,28 @@
     <%= flash[:meal_log_notice] %>
   </div>
 <% end %>
+
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <h2 class="text-center mb-4">BodyLogs</h2>
+    　<% if @meal_logs.any? %>
+    <div class="row">
+      <% @meal_logs.each do |meal_log| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+
+              
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center">食事記録が設定されていません。</p>
+  <% end %>
+  </div>
+ </div>
+</div>
 
 </div>

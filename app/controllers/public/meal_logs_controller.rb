@@ -14,6 +14,7 @@ class Public::MealLogsController < ApplicationController
  end 
  
  def index
+  @meal_logs =current_user.meal_logs
  end 
  
  def edit
