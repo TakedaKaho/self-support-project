@@ -11,6 +11,11 @@
       <%= flash[:meal_log_notice] %>
     </div>
   <% end %>
+  <% if flash[:meal_log_edit_notice].present? %>
+        <div class="alert alert-success">
+          <%= flash[:meal_log_edit_notice] %>
+        </div>
+  <% end %>
 
   <div class="row justify-content-center">
     <div class="col-md-10">
