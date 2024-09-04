@@ -3,6 +3,10 @@
     font-size: 3rem; 
     color: #75A9FF; 
   }
+  .btn-primary {
+    background-color: #75A9FF; /* ボタンの背景色 */
+    border-color: #75A9FF; /* ボタンのボーダー色 */
+  }
 </style>
 
 <div class="container">
@@ -58,6 +62,9 @@
   <% else %>
     <p class="text-center">Body Logが設定されていません。</p>
   <% end %>
+   <div class="text-center">
+     <%= link_to "BodyLogを記録する", new_body_log_path, class: "btn btn-primary" %>
+   </div>
   </div>
  </div>
 </div>
