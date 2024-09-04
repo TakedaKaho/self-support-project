@@ -6,34 +6,38 @@
 </style>
 
 <div class="container">
-    
-<% if flash[:meal_log_notice].present? %>
-  <div class="ml-4 alert alert-success">
-    <%= flash[:meal_log_notice] %>
-  </div>
-<% end %>
+  <% if flash[:meal_log_notice].present? %>
+    <div class="ml-4 alert alert-success">
+      <%= flash[:meal_log_notice] %>
+    </div>
+  <% end %>
 
-<div class="row justify-content-center">
-  <div class="col-md-10">
-    <h2 class="text-center mb-4">BodyLogs</h2>
-    　<% if @meal_logs.any? %>
-    <div class="row">
-      <% @meal_logs.each do |meal_log| %>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-
-              
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <h2 class="text-center mb-4">食事記録</h2>
+      
+      <% if @meal_logs.any? %>
+        <div class="row">
+          <% @meal_logs.each do |meal_log| %>
+            <div class="col-md-4 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= meal_log.meal_date.strftime("%Y年%m月%d日") %>
+                  </h5>
+                  <p class="card-text">
+                    <strong>食事タイプ:</strong> <%= meal_log.meal_type %><br>
+                    <strong>食べたもの:</strong> <%= meal_log.food_name %><br>
+                    <strong>数量:</strong> <%= meal_log.amount %>g
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
+      <% else %>
+        <p class="text-center">食事記録が設定されていません。</p>
       <% end %>
     </div>
-  <% else %>
-    <p class="text-center">食事記録が設定されていません。</p>
-  <% end %>
   </div>
- </div>
-</div>
-
 </div>
