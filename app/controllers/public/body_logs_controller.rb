@@ -35,7 +35,7 @@ class Public::BodyLogsController < ApplicationController
  def destroy
   @body_log = BodyLog.find(params[:id])
   @body_log.destroy
-  flash[:body_log_destroy_notice]="BodyLogをを削除しました。"
+  flash[:body_log_destroy_notice]="BodyLogを削除しました。"
   redirect_to body_logs_path
  end 
  

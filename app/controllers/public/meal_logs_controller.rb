@@ -32,6 +32,10 @@ class Public::MealLogsController < ApplicationController
  end 
  
  def destroy
+  @meal_log = MealLog.find(params[:id])
+  @meal_log.destroy
+  flash[:meal_log_destroy_notice]="食事記録を削除しました。"
+  redirect_to meal_logs_path
  end 
  
  private
