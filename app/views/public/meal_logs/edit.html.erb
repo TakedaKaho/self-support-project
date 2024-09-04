@@ -10,6 +10,46 @@
 </style>
 
 <div class="container">
- <h2 class="text-center mb-4">Edit</h2>
-    edit/meal_log
+  <h2 class="text-center mb-4">食事記録の編集</h2>
+  
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <% if flash[:meal_log_edit_notice].present? %>
+        <div class="alert alert-success">
+          <%= flash[:meal_log_edit_notice] %>
+        </div>
+      <% end %>
+      
+      <div class="card">
+        <div class="card-body">
+          <%= form_with model: @meal_log, local: true do |f| %>
+            <%= f.label :meal_date, "食事記録日", class: "form-label" %>
+            <div class="input-group">
+              <%= f.date_field :meal_date, class: "form-control" %>
+            </div>
+            
+            <%= f.label :meal_type, "食事タイプ", class: "form-label" %>
+            <div class="input-group">
+              <%= f.select :meal_type, MealLog.meal_types.keys, {}, class: "form-control" %>
+            </div>
+            
+            <%= f.label :food_name, "食べたもの", class: "form-label" %>
+            <div class="input-group">
+              <%= f.text_area :food_name, class: "form-control" %>
+            </div>
+            
+            <%= f.label :amount, "数量 (g)", class: "form-label" %>
+            <div class="input-group">
+              <%= f.number_field :amount, class: "form-control" %>
+              <span class="input-group-text">g</span>
+            </div>
+            
+            <div class="text-center">
+              <%= f.submit "更新する", class: "btn btn-primary mt-4" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -18,11 +18,11 @@ class Public::MealLogsController < ApplicationController
  end 
  
  def edit
-  @meal_logs= MealLog.find(params[:id])
+  @meal_log= MealLog.find(params[:id])
  end 
  
  def update
-  @meal_logs= MealLog.find(params[:id])
+  @meal_log= MealLog.find(params[:id])
   if @meal_log.update(meal_log_params)
    redirect_to meal_logs_path
    flash[:meal_log_edit_notice]="食事記録を変更しました"
