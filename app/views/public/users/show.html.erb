@@ -15,14 +15,18 @@
   <div class="row">
     <!-- サイドバー -->
     <div class="col-md-3">
+      
       <div class="card mb-3">
         <div class="card-header">
           <h4 class="mb-0 text-center">Profile <i class="fa-solid fa-user"></i></h4>
         </div>
-        <div class="card-body">
-          <p><strong>名前:</strong> <%= @user.name %></p>
-          <p><strong>メール:</strong> <%= @user.email %></p>
-          <p><strong>紹介文:</strong> <%= @user.body.gsub(/\n/, '<br>').html_safe %></p>
+        <div class="card-body text-center">
+          <strong>名前</strong>
+          <p class="text-muted mt-2"><%= @user.name %></p>
+          <strong>メール</strong>
+          <p class="text-muted mt-2"><%= @user.email %></p>
+          <strong>紹介文</strong>
+          <p class="text-muted mt-2"><%= @user.body.gsub(/\n/, '<br>').html_safe %></p>
           <%= link_to edit_user_path(current_user), class: "btn btn-outline-dark mb-2 w-100" do %>
             編集 <i class="fa-solid fa-user-gear"></i>
           <% end %>
