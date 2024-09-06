@@ -5,6 +5,7 @@ class Public::UsersController < ApplicationController
    @new_goal = Goal.order(created_at: :desc).first
    @today_tasks = current_user.tasks.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
    @today_body_logs = @user.body_logs.where(recorded_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+   @body_logs =@user.body_logs.order(:recorded_at)
  end
  
  def edit
@@ -29,6 +30,6 @@ class Public::UsersController < ApplicationController
  
  def user_params
   params.require(:user).permit(:name, :body)
-end
+ end
  
 end
