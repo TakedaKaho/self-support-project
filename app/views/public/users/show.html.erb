@@ -138,7 +138,47 @@
         </div>
         <div class="card-body">
           <canvas id="weightChart"></canvas>
-          <script></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+             var ctx = document.getElementById('weightChart').getContext('2d');
+             
+             // Ruby から JavaScript へのデータ受け渡し
+              var labels = <%= raw @body_logs.map { |log| log.recorded_at.strftime('%Y-%m-%d') }.to_json %>;
+              var data = <%= raw @body_logs.map(&:weight).to_json %>;
+              
+              var weightChart = new Chart(ctx, {
+                type: 'line', // 折れ線グラフ
+                data: {
+                  labels: labels, // X 軸のラベル（記録日）
+                  datasets: [{
+                    label: '体重の推移',
+                    data: data, // 体重データ
+                    backgroundColor: 'rgba(99, 255, 132, 0.2)', // 背景色
+                    borderColor: 'rgba(99, 255, 132, 1)', // ボーダー色
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    x: {
+                      title: {
+                        display: true,
+                        text: '日付'
+                      }
+                    },
+                    y: {
+                      title: {
+                        display: true,
+                        text: '体重 (kg)'
+                      },
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+            });
+          </script>
+          </script>
         </div>
       </div>
     </div>
