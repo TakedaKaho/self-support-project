@@ -139,7 +139,7 @@
         <div class="card-body">
           <canvas id="weightChart"></canvas>
           <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('turbolinks:load', function() {
              var ctx = document.getElementById('weightChart').getContext('2d');
              
              // Ruby から JavaScript へのデータ受け渡し
@@ -149,12 +149,12 @@
               var weightChart = new Chart(ctx, {
                 type: 'line', // 折れ線グラフ
                 data: {
-                  labels: labels, // X 軸のラベル（記録日）
+                  labels: labels, // 上で定義したX 軸のラベル（記録日）
                   datasets: [{
                     label: '体重の推移',
-                    data: data, // 体重データ
-                    backgroundColor: 'rgba(99, 255, 132, 0.2)', // 背景色
-                    borderColor: 'rgba(99, 255, 132, 1)', // ボーダー色
+                    data: data, // 上で定義した体重データ
+                    backgroundColor: 'rgba(99, 255, 132, 0.2)', 
+                    borderColor: 'rgba(99, 255, 132, 1)', 
                     borderWidth: 1
                   }]
                 },
