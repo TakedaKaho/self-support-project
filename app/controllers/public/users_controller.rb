@@ -5,7 +5,8 @@ class Public::UsersController < ApplicationController
    @new_goal = Goal.order(created_at: :desc).first
    @today_tasks = current_user.tasks.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
    @today_body_logs = @user.body_logs.where(recorded_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
-   @body_logs =@user.body_logs.order(:recorded_at)
+   @body_logs = @user.body_logs.where('recorded_at >= ?', 30.days.ago).order(:recorded_at) #最新の記録から30日
+
  end
  
  def edit
