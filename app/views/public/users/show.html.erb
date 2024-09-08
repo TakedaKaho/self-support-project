@@ -15,7 +15,6 @@
   <div class="row">
     <!-- サイドバー -->
     <div class="col-md-3">
-      
       <div class="card mb-3">
         <div class="card-header">
           <h4 class="mb-0 text-center">Profile <i class="fa-solid fa-user"></i></h4>
@@ -70,7 +69,7 @@
                     <% if task.completed %>
                       <span class="btn btn-sm btn-outline-dark"> 達成 <i class="fa-regular fa-face-smile"></i> <i class="fa-regular fa-thumbs-up" style="color: #63E6BE;"></i></span>
                     <% else %>
-                      <span class="btn btn-sm btn-outline-dark"> 未達成 <i class="fa-regular fa-face-surprise"></i> <i class="fa-solid fa-fire" style="color: #fb5656;"></i> </span>
+                      <span class="btn btn-sm btn-outline-dark"> 未達成 <i class="fa-regular fa-face-surprise"></i> <i class="fa-solid fa-fire" style="color: #fb5656;"></i></span>
                     <% end %>
                   </div>
                   <div>
@@ -96,8 +95,8 @@
         <div class="card-body text-center">
           <% if @new_goal %>
             <div class="body-log-entry">
-              <p>目標体重:<%= @new_goal.target_weight %> kg</p>
-              <p>目標体脂肪率:</strong> <%= @new_goal.target_body_fat %> %</p>
+              <p>目標体重: <%= @new_goal.target_weight %> kg</p>
+              <p>目標体脂肪率: <%= @new_goal.target_body_fat %> %</p>
             </div>
           <% else %>
             <p>まだ目標がありません。</p>
@@ -115,18 +114,18 @@
         </div>
         <div class="card-body text-center">
           <% if @today_body_logs.any? %>
-           <% @today_body_logs.each do |body_log| %>
-            <div class="body-log-entry">
-              <p>記録日: <%= body_log.recorded_at.strftime("%Y-%m-%d") %></p>
-              <p>体重: <%= body_log.weight %> kg</p>
-              <p>体脂肪率: <%= body_log.body_fat%> %</p>
-            </div>
-           <% end %>
+            <% @today_body_logs.each do |body_log| %>
+              <div class="body-log-entry">
+                <p>記録日: <%= body_log.recorded_at.strftime("%Y-%m-%d") %></p>
+                <p>体重: <%= body_log.weight %> kg</p>
+                <p>体脂肪率: <%= body_log.body_fat %> %</p>
+              </div>
+            <% end %>
           <% else %>
             <p>今日の記録はまだありません。</p>
           <% end %>
-          </div>
-          <div class="card-footer text-center">
+        </div>
+        <div class="card-footer text-center">
           <%= link_to "今日の記録を残す", new_body_log_path, class: "btn btn-outline-dark me-2" %>
           <%= link_to "過去のBodyLog", body_logs_path, class: "btn btn-outline-dark" %>
         </div>
@@ -138,59 +137,58 @@
         </div>
         <div class="card-body">
           <canvas id="weightChart"></canvas> <!--javascript下記で記載-->
+          <script>
+            document.addEventListener('turbolinks:load', function() {
+              var ctx = document.getElementById('weightChart').getContext('2d');
+              
+              // Ruby から JavaScript へのデータ受け渡し
+              var labels = <%= raw @body_logs.map { |log| log.recorded_at.strftime('%Y-%m-%d') }.to_json %>;
+              var weightData = <%= raw @body_logs.map(&:weight).to_json %>;
+              var bodyFatData = <%= raw @body_logs.map(&:body_fat).to_json %>; // 体脂肪率データ
+              
+              var weightChart = new Chart(ctx, {
+                type: 'line', // 折れ線グラフ
+                data: {
+                  labels: labels, // X軸のラベル（記録日）
+                  datasets: [
+                    {
+                      label: '体重の推移',
+                      data: weightData, // 体重データ
+                      backgroundColor: 'rgba(99, 255, 132, 0.2)', 
+                      borderColor: 'rgba(99, 255, 132, 1)', 
+                      borderWidth: 1
+                    },
+                    {
+                      label: '体脂肪率の推移',
+                      data: bodyFatData, // 体脂肪率データ
+                      backgroundColor: 'rgba(255, 99, 132, 0.2)', 
+                      borderColor: 'rgba(255, 99, 132, 1)', 
+                      borderWidth: 1
+                    }
+                  ]
+                },
+                options: {
+                  scales: {
+                    x: {
+                      title: {
+                        display: true,
+                        text: '日付'
+                      }
+                    },
+                    y: {
+                      title: {
+                        display: true,
+                        text: '数値'
+                      },
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+            });
+          </script>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('turbolinks:load', function() {
-    var ctx = document.getElementById('weightChart').getContext('2d');
-    
-    // Ruby から JavaScript へのデータ受け渡し
-    var labels = <%= raw @body_logs.map { |log| log.recorded_at.strftime('%Y-%m-%d') }.to_json %>;
-    var weightData = <%= raw @body_logs.map(&:weight).to_json %>;
-    var bodyFatData = <%= raw @body_logs.map(&:body_fat).to_json %>; // 体脂肪率データ
-    
-    var weightChart = new Chart(ctx, {
-      type: 'line', // 折れ線グラフ
-      data: {
-        labels: labels, // X軸のラベル（記録日）
-        datasets: [
-          {
-            label: '体重の推移',
-            data: weightData, // 体重データ
-            backgroundColor: 'rgba(99, 255, 132, 0.2)', 
-            borderColor: 'rgba(99, 255, 132, 1)', 
-            borderWidth: 1
-          },
-          {
-            label: '体脂肪率の推移',
-            data: bodyFatData, // 体脂肪率データ
-            backgroundColor: 'rgba(255, 99, 132, 0.2)', 
-            borderColor: 'rgba(255, 99, 132, 1)', 
-            borderWidth: 1
-          }
-        ]
-      },
-      options: {
-        scales: {
-          x: {
-            title: {
-              display: true,
-              text: '日付'
-            }
-          },
-          y: {
-            title: {
-              display: true,
-              text: '数値'
-            },
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  });
-</script>
