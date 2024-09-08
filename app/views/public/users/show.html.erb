@@ -137,50 +137,60 @@
           <h2 class="text-center mb-0">Weight Progress Graph <i class="fa-solid fa-arrow-trend-up" style="color: #63E6BE;"></i></h2>
         </div>
         <div class="card-body">
-          <canvas id="weightChart"></canvas>
-          <script>
-            document.addEventListener('turbolinks:load', function() {
-             var ctx = document.getElementById('weightChart').getContext('2d');
-             
-             // Ruby から JavaScript へのデータ受け渡し
-              var labels = <%= raw @body_logs.map { |log| log.recorded_at.strftime('%Y-%m-%d') }.to_json %>;
-              var data = <%= raw @body_logs.map(&:weight).to_json %>;
-              
-              var weightChart = new Chart(ctx, {
-                type: 'line', // 折れ線グラフ
-                data: {
-                  labels: labels, // 上で定義したX 軸のラベル（記録日）
-                  datasets: [{
-                    label: '体重の推移',
-                    data: data, // 上で定義した体重データ
-                    backgroundColor: 'rgba(99, 255, 132, 0.2)', 
-                    borderColor: 'rgba(99, 255, 132, 1)', 
-                    borderWidth: 1
-                  }]
-                },
-                options: {
-                  scales: {
-                    x: {
-                      title: {
-                        display: true,
-                        text: '日付'
-                      }
-                    },
-                    y: {
-                      title: {
-                        display: true,
-                        text: '体重 (kg)'
-                      },
-                      beginAtZero: true
-                    }
-                  }
-                }
-              });
-            });
-          </script>
+          <canvas id="weightChart"></canvas> <!--javascript下記で記載-->
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    var ctx = document.getElementById('weightChart').getContext('2d');
+    
+    // Ruby から JavaScript へのデータ受け渡し
+    var labels = <%= raw @body_logs.map { |log| log.recorded_at.strftime('%Y-%m-%d') }.to_json %>;
+    var weightData = <%= raw @body_logs.map(&:weight).to_json %>;
+    var bodyFatData = <%= raw @body_logs.map(&:body_fat).to_json %>; // 体脂肪率データ
+    
+    var weightChart = new Chart(ctx, {
+      type: 'line', // 折れ線グラフ
+      data: {
+        labels: labels, // X軸のラベル（記録日）
+        datasets: [
+          {
+            label: '体重の推移',
+            data: weightData, // 体重データ
+            backgroundColor: 'rgba(99, 255, 132, 0.2)', 
+            borderColor: 'rgba(99, 255, 132, 1)', 
+            borderWidth: 1
+          },
+          {
+            label: '体脂肪率の推移',
+            data: bodyFatData, // 体脂肪率データ
+            backgroundColor: 'rgba(255, 99, 132, 0.2)', 
+            borderColor: 'rgba(255, 99, 132, 1)', 
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: '日付'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: '数値'
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  });
+</script>
