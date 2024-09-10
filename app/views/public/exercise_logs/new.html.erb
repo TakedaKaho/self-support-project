@@ -1,5 +1,4 @@
-
- <style>
+<style>
   h2.text-center {
     font-size: 3rem; 
     color: #75A9FF; 
@@ -11,37 +10,48 @@
 </style>
 
 <div class="container">
- <div class="row justify-content-center">
-  <div class="col-md-6">
-    <h2 class="text-center mb-4">今日の運動を記録する</h2>
-    <div class="card">
-     <div class="card-body">
-      <%= form_with model: @exercise, local: true do |f| %>
-       <%= f.label :exercise_date, "記録日", class: "form-label" %>
-        <div class="input-group">
-         <%= f.date_field :exercise_date,value: Time.zone.today, class: "form-control" %>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">今日の運動を記録する</h2>
+      <div class="card">
+        <div class="card-body">
+          <%= form_with model: @exercise, local: true do |f| %>
+            <div class="mb-3">
+              <%= f.label :exercise_date, "記録日", class: "form-label" %>
+              <div class="input-group">
+                <%= f.date_field :exercise_date, value: Time.zone.today, class: "form-control" %>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <%= f.label :exercise_type, "運動内容", class: "form-label" %>
+              <div class="input-group">
+                <%= f.text_field :exercise_type, class: "form-control", placeholder: "例: ジョギング、スイミング" %>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <%= f.label :exercise_duration, "運動時間", class: "form-label" %>
+              <div class="input-group">
+                <%= f.number_field :duration_value, step: 1, class: "form-control", placeholder: "例: 30" %>
+                <%= f.select :duration_unit, options_for_select([['分', 'minutes'], ['時間', 'hours']]), {}, class: "form-select" %>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <%= f.label :notes, "メモ", class: "form-label" %>
+              <div class="input-group">
+                <%= f.text_area :notes, class: "form-control" %>
+              </div>
+            </div>
+            
+            <div class="text-center">
+              <%= f.submit "運動を記録", class: "btn btn-primary mt-4" %>
+            </div>
+          <% end %>
         </div>
-       <%= f.label :exercise_type, "運動内容", class: "form-label" %>
-        <div class="input-group">
-         <%= f.number_field :exercise_type,  class: "form-control" %>
-        </div>
-        <%= f.label :time, "運動時間", class: "form-label" %>
-        <div class="input-group">
-         <%= f.number_field :body_fat, step: 1, class: "form-control" %>
-         <span class="input-group-text">分</span>
-        </div>
-         <%= f.label :notes, "メモ", class: "form-label" %>
-        <div class="input-group">
-         <%= f.text_area :notes,  class: "form-control" %>
-        </div>
-        
-        <div class="text-center">
-         <%= f.submit "運動を記録", class: "btn btn-primary mt-4" %>
-        </div>
-      <% end %>
-
-     </div>
+      </div>
     </div>
   </div>
- </div>
-</div>    
+</div>
+  
