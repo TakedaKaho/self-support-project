@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :tweets, dependent: :destroy
   has_many :meal_logs, dependent: :destroy
   has_many :body_logs, dependent: :destroy
+  has_many :exercise_logs, dependent: :destroy
 end

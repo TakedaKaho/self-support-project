@@ -1,6 +1,7 @@
 class Public::ExerciseLogsController < ApplicationController
     
  def new
+  @exercise =ExerciseLog.new
  end 
  
  def create
