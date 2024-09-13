@@ -31,17 +31,17 @@
             </div>
             
             <div class="mb-3">
-              <%= f.label :exercise_duration, "運動時間", class: "form-label" %>
+              <%= f.label :time, "運動時間", class: "form-label" %>
               <div class="input-group">
-                <%= f.number_field :duration_value, step: 1, class: "form-control", placeholder: "例: 30" %>
-                <%= f.select :duration_unit, options_for_select([['分', 'minutes'], ['時間', 'hours']]), {}, class: "form-select" %>
+                <%= f.number_field :time, step: 1, class: "form-control", placeholder: "例: 30" %>
+                <%= f.select :time, options_for_select([['分', 'minutes'], ['時間', 'hours']]), {}, class: "form-select" %>
               </div>
             </div>
             
             <div class="mb-3">
               <%= f.label :notes, "メモ", class: "form-label" %>
               <div class="input-group">
-                <%= f.text_area :notes, class: "form-control", placeholder: "例: スクワット３セット、辛くて２セット目で一回休憩した。"  %>
+                <%= f.text_area :notes, class: "form-control", placeholder: "例: スクワット３セット、辛くて２セット目で一回休憩した"  %>
               </div>
             </div>
             
