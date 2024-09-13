@@ -1,4 +1,11 @@
  <div class="container">
+  
+ <% if flash[:exercise_log_notice].present? %>
+    <div class="ml-4 alert alert-success">
+      <%= flash[:exercise_log_notice] %>
+    </div>
+  <% end %>
+ 
  exercise_logs/index
  <div class="card">
   <div class="card-body">

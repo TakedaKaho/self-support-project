@@ -6,6 +6,12 @@ class Public::ExerciseLogsController < ApplicationController
  
  def create
   @exercise =ExerciseLog.new(exercise_log_params)
+  if @exercise.save
+   flash[:exercise_log_notice]="運動頑張った〜！"
+   redirect_to exercise_logs_path
+  else
+   render :new
+  end 
  end 
  
  def index
