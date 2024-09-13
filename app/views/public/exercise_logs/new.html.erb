@@ -19,14 +19,14 @@
             <div class="mb-3">
               <%= f.label :exercise_date, "記録日", class: "form-label" %>
               <div class="input-group">
-                <%= f.date_field :exercise_date, value: Time.zone.today, class: "form-control" %>
+                <%= f.date_field :exercise_date, value: Time.zone.today, class: "form-control", required: true %>
               </div>
             </div>
             
             <div class="mb-3">
               <%= f.label :exercise_type, "運動内容", class: "form-label" %>
               <div class="input-group">
-                <%= f.text_field :exercise_type, class: "form-control", placeholder: "例: ジョギング、筋トレ" %>
+                <%= f.text_field :exercise_type, class: "form-control", placeholder: "例: ジョギング、筋トレ", required: true %>
               </div>
             </div>
             
@@ -34,7 +34,7 @@
               <%= f.label :time, "運動時間", class: "form-label" %>
               <div class="input-group">
                 <%= f.number_field :time, step: 1, class: "form-control", placeholder: "例: 30" %>
-                <%= f.select :time, options_for_select([['分', 'minutes'], ['時間', 'hours']]), {}, class: "form-select" %>
+                <%= f.select :time, options_for_select([['分', 'minutes'], ['時間', 'hours']]), {}, class: "form-select", required: true %>
               </div>
             </div>
             

@@ -15,6 +15,7 @@ class Public::ExerciseLogsController < ApplicationController
  end 
  
  def index
+  
  end 
  
  def edit
