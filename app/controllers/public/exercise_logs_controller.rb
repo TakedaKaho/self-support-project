@@ -15,7 +15,7 @@ class Public::ExerciseLogsController < ApplicationController
  end 
  
  def index
-  
+  @exercise_logs = current_user.exercise_logs
  end 
  
  def edit
