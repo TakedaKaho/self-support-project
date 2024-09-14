@@ -15,6 +15,7 @@
     </div>
 
     <div class="col-md-8">
+      <!--日毎にする。group_byを使用・何でグループ化したいのか、今回はexercise_date(日)でグループ化-->
       <% @exercise_logs.group_by { |exercise| exercise.exercise_date }.each do |date, exercises| %>
         <div class="card shadow-sm mb-4">
           <div class="card-body">
