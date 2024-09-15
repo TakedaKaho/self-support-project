@@ -19,12 +19,18 @@ class Public::ExerciseLogsController < ApplicationController
  end 
  
  def edit
+  @exercise_log = Exercise_log.find_by(params[:id])
  end 
  
  def update
+  @exercise_log = Exercise_log.find_by(params[:id])
  end 
  
  def destroy
+  @exercise_log = Exercise_log.find_by(params[:id])
+  @exercise_log.destroy
+  flash[:exercise_log_destroy_notice]="運動記録を削除しました。"
+  redirect_to exercise_logs_path
  end 
  
  private
