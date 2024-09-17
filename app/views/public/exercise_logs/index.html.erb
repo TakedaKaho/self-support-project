@@ -33,7 +33,9 @@
               <strong>運動時間：</strong> <%= exercise.time %> 分<br>
               <strong>メモ：</strong> <%= exercise.notes %>
              </p>
-          
+             <%= link_to edit_exercise_log_path(exercise), class: 'btn btn-sm btn-outline-dark' do %>
+             編集
+             <% end %>
              <%= link_to exercise_log_path(exercise), method: :delete, class: 'btn btn-sm btn-outline-dark', data: { confirm: '本当に削除しますか？' } do %>
               <i class="fa-solid fa-trash-can"></i>
              <% end %>
