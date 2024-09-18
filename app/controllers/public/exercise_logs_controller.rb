@@ -24,6 +24,10 @@ class Public::ExerciseLogsController < ApplicationController
  
  def update
   @exercise_log = ExerciseLog.find_by(params[:id])
+  if @exercise_log.update(exercise_log_params)
+   flash[:edit_exercise_notice]="運動記録を変更しました。"
+   redirect_to exercise_logs_path
+  end    
  end 
  
  def destroy
