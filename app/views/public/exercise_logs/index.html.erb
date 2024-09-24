@@ -9,6 +9,11 @@
       <%= flash[:exercise_log_destroy_notice] %>
     </div>
   <% end %>
+  <% if flash[:edit_exercise_notice].present? %>
+    <div class="alert alert-success text-center">
+      <%= flash[:edit_exercise_notice] %>
+    </div>
+  <% end %>
 
   <div class="row">
     <div class="col-md-4">
