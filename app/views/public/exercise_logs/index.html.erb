@@ -25,37 +25,39 @@
     </div>
 
     <div class="col-md-8">
-     <!-- 日毎にグループ化 -->
-     <% @exercise_logs.group_by { |exercise| exercise.exercise_date }.each do |date, exercises| %>
-       <div class="card shadow-sm mb-4">
-         <div class="card-body">
-           <h4 class="text-muted mb-3">
-             <%= date.strftime("%Y年%m月%d日") %>
-           </h4>
-           <% exercises.each do |exercise| %>
-             <p>
-              <strong>運動内容：</strong> <%= exercise.exercise_type %> <br>
-              <strong>運動時間：</strong> <%= exercise.time %> 分<br>
-              <strong>メモ：</strong> <%= exercise.notes %>
-             </p>
-             
-             <div class ="text-right">
-             <%= link_to edit_exercise_log_path(exercise), class: 'btn btn-sm btn-outline-dark' do %>
-             編集
-             <% end %>
-             <%= link_to exercise_log_path(exercise), method: :delete, class: 'btn btn-sm btn-outline-dark', data: { confirm: '本当に削除しますか？' } do %>
-              <i class="fa-solid fa-trash-can"></i>
-             <% end %>
-             </div>
-           <% end %>
-        
-         </div>
-       </div>
-     <% end %>
-   </div>
+      <div class="row"> 
+        <% @exercise_logs.group_by { |exercise| exercise.exercise_date }.each do |date, exercises| %>
+          <div class="col-md-6 mb-4">  <!-- ここをcol-md-6にして2つ並ぶようにする -->
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <h4 class="text-muted mb-3">
+                  <%= date.strftime("%Y年%m月%d日") %>
+                </h4>
+                <% exercises.each do |exercise| %>
+                  <p>
+                    <strong>運動内容：</strong> <%= exercise.exercise_type %> <br>
+                    <strong>運動時間：</strong> <%= exercise.time %> 分<br>
+                    <strong>メモ：</strong> <%= exercise.notes %>
+                  </p>
 
+                  <div class="card-footer text-center">
+                    <%= link_to edit_exercise_log_path(exercise), class: 'btn btn-sm btn-outline-dark' do %>
+                      編集
+                    <% end %>
+                    <%= link_to exercise_log_path(exercise), method: :delete, class: 'btn btn-sm btn-outline-dark', data: { confirm: '本当に削除しますか？' } do %>
+                      <i class="fa-solid fa-trash-can"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div> 
+        <% end %>
+      </div> 
+    </div>
   </div>
 </div>
+
 
 
  
