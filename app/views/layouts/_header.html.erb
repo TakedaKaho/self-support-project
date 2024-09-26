@@ -11,10 +11,10 @@
         Mypage <i class="fa-solid fa-heart" style="color: #74C0FC;"></i>
         <% end %>
         <%= link_to  tweets_path, class: "btn btn-outline-dark me-2 mr-3" do %>
-        頑張りをつぶやこう<i class="fa-regular fa-face-surprise"></i>
+        頑張りをつぶやこう<i class="fa-regular fa-face-surprise"></i> <i class="fa-regular fa-comment-dots"></i>
         <% end %>
         <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-outline-dark me-2" do %>
-        Log Out <i class="fa-solid fa-right-from-bracket"></i>
+        Log Out <i class="fa-solid fa-right-from-bracket" style="color: #ff4b0f;"></i>
         <% end %>
       <% else %>
         <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary me-2" %>
