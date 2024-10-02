@@ -16,6 +16,7 @@ class Public::ExerciseLogsController < ApplicationController
  
  def index
   @exercise_logs = current_user.exercise_logs
+  render json:@exercise_logs # Heatmap用
  end 
  
  def edit
